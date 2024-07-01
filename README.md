@@ -44,10 +44,10 @@ Creates a new context at the specified path, if given.
 ### New Service
 
 ```bash
-lex <context> new <service> --template <template> [--path <path>]
+lex <context> new <service> --template <template> --template-path <template-path> [--path <path>]
 ```
 
-Creates a new service within the specified context using a given template. Optionally, a path can be provided to specify where to create the service.
+Creates a new service within the specified context using a given template, template-path is required. Optionally, a path can be provided to specify where to create the service.
 
 ### Invoke
 

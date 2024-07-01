@@ -282,7 +282,7 @@ new_service() {
     done
 
     if [ -z "$context" ] || [ -z "$service" ] || [ -z "$template" ]; then
-        echo "Usage: lex <context> create <service> --template <template> [--path <path>]"
+        echo "Usage: lex <context> create <service> --template <template> [--path <path> --template-path <template-path>]"
         exit 1
     fi
 
