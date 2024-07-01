@@ -9,10 +9,6 @@ chmod +x ./setup.sh
 
 ## Usage
 
-## Git branching
-
-We use the branch name to define the deployment environment.
-
 ### Deploy
 
 ```bash
@@ -36,6 +32,46 @@ lex test <context> <service> [scope]
 ```bash
 lex migrate
 ```
+
+### Remove
+
+```bash
+lex remove <context> <service>
+```
+
+### Init
+
+```bash
+lex init
+```
+
+### Templates
+
+```bash
+lex templates --path <path>
+```
+
+### Contexts
+
+```bash
+lex contexts
+```
+
+### New Context
+
+```bash
+lex new <context> [--path <path>]
+```
+
+### New Service
+
+```bash
+lex <context> new <service> --template <template> [--path <path>]
+```
+
+## Git branching
+
+We use the branch name to define the deployment environment.
 
 ## Contexts
 
