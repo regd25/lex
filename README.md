@@ -15,11 +15,15 @@ chmod +x ./setup.sh
 lex deploy <context> <service>?
 ```
 
+Deploys the specified context and optionally a specific service within that context.
+
 ### Invoke
 
 ```bash
 lex invoke <context> <service> <function>
 ```
+
+Invokes a specific function within a provided service and context.
 
 ### Test
 
@@ -27,11 +31,15 @@ lex invoke <context> <service> <function>
 lex test <context> <service> [scope]
 ```
 
+Runs tests for a specific service within a context. Optionally, a scope can be specified.
+
 ### Migrate
 
 ```bash
 lex migrate
 ```
+
+Applies migrations necessary for the services or infrastructure.
 
 ### Remove
 
@@ -39,11 +47,15 @@ lex migrate
 lex remove <context> <service>
 ```
 
+Removes the specified context or service within it.
+
 ### Init
 
 ```bash
 lex init
 ```
+
+Initializes a new project setup, preparing the necessary files and configuration.
 
 ### Templates
 
@@ -51,11 +63,15 @@ lex init
 lex templates --path <path>
 ```
 
+Displays available templates. Optionally, a path can be provided to specify where to look for templates.
+
 ### Contexts
 
 ```bash
 lex contexts
 ```
+
+Lists all available contexts.
 
 ### New Context
 
@@ -63,11 +79,15 @@ lex contexts
 lex new <context> [--path <path>]
 ```
 
+Creates a new context at the specified path, if given.
+
 ### New Service
 
 ```bash
 lex <context> new <service> --template <template> [--path <path>]
 ```
+
+Creates a new service within the specified context using a given template. Optionally, a path can be provided to specify where to create the service.
 
 ## Git branching
 
