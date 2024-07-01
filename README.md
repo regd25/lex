@@ -9,46 +9,6 @@ chmod +x ./setup.sh
 
 ## Usage
 
-### Deploy
-
-```bash
-lex deploy <context> <service>?
-```
-
-Deploys the specified context and optionally a specific service within that context.
-
-### Invoke
-
-```bash
-lex invoke <context> <service> <function>
-```
-
-Invokes a specific function within a provided service and context.
-
-### Test
-
-```bash
-lex test <context> <service> [scope]
-```
-
-Runs tests for a specific service within a context. Optionally, a scope can be specified.
-
-### Migrate
-
-```bash
-lex migrate
-```
-
-Applies migrations necessary for the services or infrastructure.
-
-### Remove
-
-```bash
-lex remove <context> <service>
-```
-
-Removes the specified context or service within it.
-
 ### Init
 
 ```bash
@@ -89,6 +49,46 @@ lex <context> new <service> --template <template> [--path <path>]
 
 Creates a new service within the specified context using a given template. Optionally, a path can be provided to specify where to create the service.
 
+### Invoke
+
+```bash
+lex invoke <context> <service> <function>
+```
+
+Invokes a specific function within a provided service and context.
+
+### Test
+
+```bash
+lex test <context> <service> [scope]
+```
+
+Runs tests for a specific service within a context. Optionally, a scope can be specified.
+
+### Deploy
+
+```bash
+lex deploy <context> <service>?
+```
+
+Deploys the specified context and optionally a specific service within that context.
+
+### Migrate
+
+```bash
+lex migrate
+```
+
+Applies migrations necessary for the services or infrastructure.
+
+### Remove
+
+```bash
+lex remove <context> <service>
+```
+
+Removes the specified context or service within it.
+
 ## Git branching
 
 We use the branch name to define the deployment environment.
@@ -107,10 +107,11 @@ src
 │   │   └── serverless.yml|ts
 │   │   └── package.json
 │   └── service2
-│       ├── handlers
-│       └── serverless.yml|ts
-│       └── package.json
-└── package.json
+│       ├── handlers|ts
+│       └── serverless.yml|ts|js
+│       └── package.json|ts|js
+└── migrations
+    └── migrations
 ```
 
 ## Services
