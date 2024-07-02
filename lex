@@ -250,6 +250,112 @@ new() {
     cp -r "${path}templates/default_template/"* "${path}/src/$new_context/"
 }
 
+migrations() {
+    local path=$(get_lex_path)
+    local subcommand=$1
+    shift
+
+    if [ -z "$subcommand" ]; then
+        echo "Usage: lex migrations <up|down|new> [--path <path>]"
+        exit 1
+    fi
+
+    case "$subcommand" in
+        up)
+            up_migrations "$@"
+            ;;
+        down)
+            down_migrations "$@"
+            ;;
+        new)
+            new_migration "$@"
+            ;;
+        *)
+            echo "Unknown command: $subcommand"
+            echo "Available commands: up, down, new"
+            exit 1
+            ;;
+    esac
+}
+
+up_migrations() {
+    local path=$(get_lex_path)
+    shift
+
+    local count=1
+
+    while (( "$#" )); do
+        case "$1" in
+            --path)
+                path=$2
+                shift 2
+                ;;
+            *)
+                echo "Unknown parameter: $1"
+                exit 1
+                ;;
+            --count)
+                count=$2
+                shift 2
+                ;;
+        esac
+    done
+    npx node-pg-migrate up -m "$path/src/migrations/migrations" --count "$1"
+}
+
+down_migrations() {
+    local path=$(get_lex_path)
+    shift
+
+    local count=1
+
+    while (( "$#" )); do
+        case "$1" in
+            --path)
+                path=$2
+                shift 2
+                ;;
+            *)
+                echo "Unknown parameter: $1"
+                exit 1
+                ;;
+            --count)
+                count=$2
+                shift 2
+                ;;
+        esac
+    done
+
+    npx node-pg-migrate down -m "$path/src/migrations/migrations" --count "$1"
+}
+
+new_migration() {
+    local path=$(get_lex_path)
+    local name=$1
+
+    if [ -z "$name" ]; then
+        echo "Usage: lex migrations new <name> [--path <path>]"
+        exit 1
+    fi
+
+    shift
+
+    while (( "$#" )); do
+        case "$1" in
+            --path)
+                path=$2
+                shift 2
+                ;;
+            *)
+                echo "Unknown parameter: $1"
+                exit 1
+                ;;
+        esac
+    done
+
+    npx node-pg-migrate create -m "$path/src/migrations/migrations" "$name"
+}
+
 new_service() {
     local context=$1
     local service=$2
@@ -322,6 +428,9 @@ case "$command" in
         ;;
     invoke)
         invoke "$@"
+        ;;
+    migrations)
+        migrations "$@"
         ;;
     migrate)
         migrate "$@"
