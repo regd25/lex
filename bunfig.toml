@@ -1,0 +1,4 @@
+name = "lex"
+version = "0.1.0"
+description = "A framework for serverless applications using hexagonal architecture and DDD"
+entry = "bin/lex.ts"
